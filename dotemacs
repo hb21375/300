@@ -1,0 +1,102 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 이맥스 설정파일
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; 이맥스 시작할 때 환영 메세지 안 뜨게 하는
+(setq inhibit-startup-message t)
+
+;;; cperl-mode에서 auto-fill-mode 자동으로 on하기
+;(add-hook 'cperl-mode-hook 'turn-on-auto-fill)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 폰트 변경
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; 유니코드 한글영역
+(set-fontset-font
+"fontset-default"
+'(#x1100 . #xffdc)
+'("UnBatang" . "unicode-bmp"))
+
+;;;유니코드 사용자 영역
+(set-fontset-font
+"fontset-default"
+'(#xe0bc . #xf66e)
+'("UnBatang" . "unicode-bmp"))
+(set-fontset-font
+"fontset-default"
+'kana
+'("Dejavu Sans" . "unicode-bmp"))
+(set-fontset-font
+"fontset-default"
+'han
+'("Dejavu Sans" . "unicode-bmp"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 단축키 변경
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; meta 화살표 키로 창 움직이기 기능-alt 대신 meta로 써야 된다!
+(global-set-key [(meta left)] 'windmove-left)
+(global-set-key [(meta up)] 'windmove-up)
+(global-set-key [(meta down)] 'windmove-down)
+(global-set-key [(meta right)] 'windmove-right)
+
+;;;M-x을 C-x C-m으로 
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+
+;;; 글씨 크기 조절
+(define-key global-map (kbd "C-=") 'text-scale-increase)
+(define-key global-map (kbd "C--") 'text-scale-decrease)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 인터페이스
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; UI 없애기
+
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;;; 행간 번호 출력
+(global-linum-mode 1)
+
+;;; input method 한영전환 쉽게
+(set-input-method 'korean-hangul)
+(toggle-input-method)
+
+;;; 테마 설정(emacs-goodies-el)
+(color-theme-initialize)
+(color-theme-charcoal-black)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; org-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; org-remember
+(global-set-key "\C-cr" 'org-remember)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 시작 프로그램
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; shell로 시작하기
+;(shell)
+
+;;; speedbar
+;(speedbar)
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40")
+ '(org-agenda-files nil))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
